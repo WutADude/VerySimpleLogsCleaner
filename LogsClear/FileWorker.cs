@@ -12,7 +12,7 @@ namespace LogsClear
         public List<string> _DeletedFiles = new List<string>();
         public int _FilesToCheckCount, _SuspiciousFilesCount;
 
-        public async void BeginWork()
+        public void BeginWork()
         {
             _FilesToCheckCount = _FileList.Count;
             _SuspiciousFilesCount = 0;
@@ -34,8 +34,8 @@ namespace LogsClear
                     _FilesToCheckCount--;
                 }
                 catch { _FilesToCheckCount--; continue; }
-                GC.Collect();
             }
+            GC.Collect();
         }
     }
 }
