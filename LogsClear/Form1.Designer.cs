@@ -42,6 +42,7 @@ namespace LogsClear
             this.label2 = new System.Windows.Forms.Label();
             this.DragNDropLabel = new System.Windows.Forms.Label();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
+            this.SettingsButton = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.DragNDropBox.SuspendLayout();
             this.DropPanel.SuspendLayout();
@@ -60,7 +61,7 @@ namespace LogsClear
             // 
             this.TotalFilesCountLabel.Location = new System.Drawing.Point(84, 13);
             this.TotalFilesCountLabel.Name = "TotalFilesCountLabel";
-            this.TotalFilesCountLabel.Size = new System.Drawing.Size(220, 13);
+            this.TotalFilesCountLabel.Size = new System.Drawing.Size(204, 13);
             this.TotalFilesCountLabel.TabIndex = 1;
             this.TotalFilesCountLabel.Text = "0";
             // 
@@ -76,6 +77,7 @@ namespace LogsClear
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.SettingsButton);
             this.groupBox1.Controls.Add(this.SuspiciousFilesDeletedLabel);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.LeftFilesCountLabel);
@@ -172,6 +174,17 @@ namespace LogsClear
             this.MainProgressBar.Size = new System.Drawing.Size(310, 17);
             this.MainProgressBar.TabIndex = 5;
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SettingsButton.Location = new System.Drawing.Point(294, 8);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(14, 14);
+            this.SettingsButton.TabIndex = 7;
+            this.SettingsButton.Text = "⚙";
+            this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +194,7 @@ namespace LogsClear
             this.Controls.Add(this.MainProgressBar);
             this.Controls.Add(this.DragNDropBox);
             this.Controls.Add(this.groupBox1);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -210,6 +224,7 @@ namespace LogsClear
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel DropPanel;
         private System.Windows.Forms.LinkLabel SuspiciousFilesDeletedLabel;
+        private System.Windows.Forms.Label SettingsButton;
     }
 }
 

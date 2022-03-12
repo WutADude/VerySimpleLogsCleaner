@@ -9,6 +9,7 @@ namespace LogsClear
         public DeletedFilesForm()
         {
             InitializeComponent();
+            
         }
 
         private void WriteToList()

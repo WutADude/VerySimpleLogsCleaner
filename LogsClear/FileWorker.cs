@@ -8,7 +8,7 @@ namespace LogsClear
     public class FileWorker
     {
         public List<string> _FileList = new List<string>();
-        public List<string> _SusExtensions = new List<string>() { ".exe", ".bat", ".scr", ".lnk", ".bin", ".cmd", ".js", ".jse", ".gadget", ".jar", ".msi", ".wsf", ".vbs", ".ps1", ".app", ".vb", ".hta" };
+        public List<string> _SusExtensions = new List<string>();
         public List<string> _DeletedFiles = new List<string>();
         public int _FilesToCheckCount, _SuspiciousFilesCount;
 
@@ -36,6 +36,16 @@ namespace LogsClear
                 catch { _FilesToCheckCount--; continue; }
             }
             GC.Collect();
+        }
+
+        public void ReadSavedSusExtensions()
+        {
+            _SusExtensions.Clear(); // Костыль для обновления расширений
+            foreach (string Extension in Properties.Settings.Default.ExtensionsList.Trim(new char[] {'"', ',', '-',}).Split(' '))
+            {
+                if (!_SusExtensions.Contains(Extension))
+                    _SusExtensions.Add(Extension);
+            }
         }
     }
 }

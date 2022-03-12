@@ -12,7 +12,7 @@ namespace LogsClear
         {
             InitializeComponent();
             CounterUpdater().ConfigureAwait(false);
-            
+            _FileWorker.ReadSavedSusExtensions();
         }
 
         private void DropPanel_DragDrop(object sender, DragEventArgs e)
@@ -55,9 +55,16 @@ namespace LogsClear
 
         private void SuspiciousFilesDeletedLabel_Click(object sender, EventArgs e)
         {
-            DeletedFilesForm _DForm = new DeletedFilesForm();
-            _DForm._FileWorker = _FileWorker;
-            _DForm.Show();
+            DeletedFilesForm DForm = new DeletedFilesForm();
+            DForm._FileWorker = _FileWorker;
+            DForm.Show();
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            SettingsForm SForm = new SettingsForm();
+            SForm._FileWorker = _FileWorker;
+            SForm.Show();
         }
     }
 
