@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace LogsClear
 {
@@ -11,11 +12,10 @@ namespace LogsClear
         public MainForm()
         {
             InitializeComponent();
-            CounterUpdater().ConfigureAwait(false);
             _FileWorker.ReadSavedSusExtensions();
         }
 
-        private void DropPanel_DragDrop(object sender, DragEventArgs e)
+        private async void DropPanel_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -26,9 +26,13 @@ namespace LogsClear
                     _FileWorker._DeletedFiles.Clear();
                     MainProgressBar.Value = 0;
                     DragNDropLabel.Text = LogsPath;
-                    foreach (string File in Directory.GetFiles(LogsPath, "*" ,SearchOption.AllDirectories))
-                        _FileWorker._FileList.Add(File);
+                    TotalFilesCountLabel.Text = "Сканирую...";
+                    await Task.Run(() => {
+                        foreach (string File in Directory.GetFiles(LogsPath, "*", SearchOption.AllDirectories))
+                            _FileWorker._FileList.Add(File);
+                    });
                     MainProgressBar.Maximum = _FileWorker._FileList.Count;
+                    CounterUpdater();
                     _FileWorker.BeginWork();
                 }
                 else
@@ -45,11 +49,12 @@ namespace LogsClear
         {
             while (true)
             {
+
                 TotalFilesCountLabel.Text = _FileWorker._FileList.Count.ToString();
                 LeftFilesCountLabel.Text = _FileWorker._FilesToCheckCount.ToString();
                 SuspiciousFilesDeletedLabel.Text = _FileWorker._SuspiciousFilesCount.ToString();
                 MainProgressBar.Value = _FileWorker._FileList.Count - _FileWorker._FilesToCheckCount;
-                await Task.Delay(250);
+                await Task.Delay(50);
             }
         }
 
@@ -67,5 +72,4 @@ namespace LogsClear
             SForm.Show();
         }
     }
-
 }
