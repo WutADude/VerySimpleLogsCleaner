@@ -8,6 +8,7 @@ namespace LogsClear
 {
     public class FileWorker
     {
+        public MainForm _mainForm;
         public List<string> _FileList = new List<string>();
         public List<string> _SusExtensions = new List<string>();
         public List<string> _DeletedFiles = new List<string>();
@@ -35,6 +36,7 @@ namespace LogsClear
                     _FilesToCheckCount--;
                 }
                 catch { _FilesToCheckCount--; continue; }
+                _mainForm.CounterUpdater();
             }
             GC.Collect();
         }

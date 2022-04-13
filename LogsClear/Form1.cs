@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace LogsClear
 {
@@ -12,6 +13,7 @@ namespace LogsClear
         {
             InitializeComponent();
             _FileWorker.ReadSavedSusExtensions();
+            _FileWorker._mainForm = this;
         }
 
         private async void DropPanel_DragDrop(object sender, DragEventArgs e)
@@ -26,12 +28,13 @@ namespace LogsClear
                     MainProgressBar.Value = 0;
                     DragNDropLabel.Text = LogsPath;
                     TotalFilesCountLabel.Text = "Сканирую...";
-                    await Task.Run(() => {
+                    await Task.Run(() =>
+                    {
                         foreach (string File in Directory.GetFiles(LogsPath, "*", SearchOption.AllDirectories))
                             _FileWorker._FileList.Add(File);
                     });
                     MainProgressBar.Maximum = _FileWorker._FileList.Count;
-                    CounterUpdater();
+
                     _FileWorker.BeginWork();
                 }
                 else
@@ -44,17 +47,12 @@ namespace LogsClear
             e.Effect = DragDropEffects.Copy;
         }
 
-        private async Task CounterUpdater()
+        public void CounterUpdater()
         {
-            while (true)
-            {
-
-                TotalFilesCountLabel.Text = _FileWorker._FileList.Count.ToString();
-                LeftFilesCountLabel.Text = _FileWorker._FilesToCheckCount.ToString();
-                SuspiciousFilesDeletedLabel.Text = _FileWorker._SuspiciousFilesCount.ToString();
-                MainProgressBar.Value = _FileWorker._FileList.Count - _FileWorker._FilesToCheckCount;
-                await Task.Delay(50);
-            }
+            TotalFilesCountLabel.Text = _FileWorker._FileList.Count.ToString();
+            LeftFilesCountLabel.Text = _FileWorker._FilesToCheckCount.ToString();
+            SuspiciousFilesDeletedLabel.Text = _FileWorker._SuspiciousFilesCount.ToString();
+            MainProgressBar.Value = _FileWorker._FileList.Count - _FileWorker._FilesToCheckCount;
         }
 
         private void SuspiciousFilesDeletedLabel_Click(object sender, EventArgs e)
