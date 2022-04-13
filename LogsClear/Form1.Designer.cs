@@ -34,6 +34,7 @@ namespace LogsClear
             this.TotalFilesCountLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SettingsButton = new System.Windows.Forms.Label();
             this.SuspiciousFilesDeletedLabel = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.LeftFilesCountLabel = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@ namespace LogsClear
             this.label2 = new System.Windows.Forms.Label();
             this.DragNDropLabel = new System.Windows.Forms.Label();
             this.MainProgressBar = new System.Windows.Forms.ProgressBar();
-            this.SettingsButton = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.DragNDropBox.SuspendLayout();
             this.DropPanel.SuspendLayout();
@@ -84,12 +84,25 @@ namespace LogsClear
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TotalFilesCountLabel);
+            this.groupBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox1.Location = new System.Drawing.Point(7, 173);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(310, 60);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Статистика:";
+            // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SettingsButton.Location = new System.Drawing.Point(294, 8);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(14, 14);
+            this.SettingsButton.TabIndex = 7;
+            this.SettingsButton.Text = "⚙";
+            this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // SuspiciousFilesDeletedLabel
             // 
@@ -173,17 +186,6 @@ namespace LogsClear
             this.MainProgressBar.Name = "MainProgressBar";
             this.MainProgressBar.Size = new System.Drawing.Size(310, 17);
             this.MainProgressBar.TabIndex = 5;
-            // 
-            // SettingsButton
-            // 
-            this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SettingsButton.Location = new System.Drawing.Point(294, 8);
-            this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(14, 14);
-            this.SettingsButton.TabIndex = 7;
-            this.SettingsButton.Text = "⚙";
-            this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // MainForm
             // 

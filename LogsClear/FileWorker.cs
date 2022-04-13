@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Threading.Tasks;
 using System.Threading;
 
 namespace LogsClear
@@ -12,11 +13,11 @@ namespace LogsClear
         public List<string> _DeletedFiles = new List<string>();
         public int _FilesToCheckCount, _SuspiciousFilesCount;
 
-        public void BeginWork()
+        public async void BeginWork()
         {
             _FilesToCheckCount = _FileList.Count;
             _SuspiciousFilesCount = 0;
-            new Thread(() => SimpleWorker()).Start();
+            await Task.Run(() => { SimpleWorker();});
         }
 
         private void SimpleWorker()
